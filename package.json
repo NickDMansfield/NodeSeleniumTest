@@ -1,0 +1,31 @@
+{
+  "name": "nodeseleniumtest",
+  "version": "1.0.0",
+  "description": "A practice exercise for learning and using Selenium with NodeJS",
+  "main": "index.js",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "asset": "^0.4.13",
+    "chai": "^1.10.0",
+    "chai-as-promised": "^4.1.1",
+    "chromedriver": "^2.37.0",
+    "selenium-webdriver": "^3.6.0",
+    "should": "^13.2.1"
+  },
+  "devDependencies": {
+    "mocha": "^5.1.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NickDMansfield/NodeSeleniumTest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NickDMansfield/NodeSeleniumTest/issues"
+  },
+  "homepage": "https://github.com/NickDMansfield/NodeSeleniumTest#readme"
+}
