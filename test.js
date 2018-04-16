@@ -7,14 +7,24 @@ const until = webdriver.until;
 
 const feID = function(str) {
   try {
-    return driver.findElement(webdriver.By.id(str));
+    return fe(webdriver.By.id, str);
   }catch(ex) {
     return null;
   }
 };
+const fe = function(type, str) {
+  return driver.findElement(type(str));
+}
 const feCN = function(str) {
   try {
-    return driver.findElement(webdriver.By.className(str));
+    return fe(webdriver.By.className, str);
+  }catch(err) {
+    return null;
+  }
+};
+const feName = function(str) {
+  try {
+    return fe(webdriver.By.name, str);
   }catch(err) {
     return null;
   }
@@ -27,9 +37,9 @@ var driver = new webdriver.Builder().
    test.describe("Check Login", function() {
    test.it("should login successfully", function() {
      driver.get('https://app.freightrover.com');
-     var emailField = driver.findElement(webdriver.By.name('Email'));
-     emailField.sendKeys("testemail@test.com");
-     var passwordField = driver.findElement(webdriver.By.name('Password'));
+     var emailField = feName('Email');
+     emailField.sendKeys("email");
+     var passwordField = feName('Password');
      passwordField.sendKeys("password");
      feCN('btn btn-success btn-lg col-xs-12 signin_icon ').click();
 
@@ -40,13 +50,13 @@ var driver = new webdriver.Builder().
     feCN('settings-tab').click();
      driver.wait(until.elementLocated(webdriver.By.id("FirstName")));
      feID('FirstName').getAttribute('value').then(firstNameVal => {
-       assert.equal(firstNameVal,'Tommy');
+       assert.equal(firstNameVal,'tommy');
      });
   });
 
   test.it("should have correct last name", function() {
     feID("LastName").getAttribute('value').then(lastNameVal => {
-      assert.equal(lastNameVal,'Test');
+      assert.equal(lastNameVal,'test');
     });
  });
 
@@ -54,9 +64,9 @@ var driver = new webdriver.Builder().
    const txtFirstName = feID("FirstName");
    const txtLastName = feID("LastName");
    txtFirstName.clear();
-   txtFirstName.sendKeys("Tommy");
+   txtFirstName.sendKeys("tommy");
    txtLastName.clear();
-   txtLastName.sendKeys("Test");
+   txtLastName.sendKeys("test");
    driver.sleep(3000);
    if (feID("Save-User") != null) {
      feID("Save-User").click();
